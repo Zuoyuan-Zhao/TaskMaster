@@ -1,0 +1,87 @@
+/* DataTable.css */
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  
+  th,
+  td {
+    padding: 0.75rem;
+    text-align: left;
+    border: 1px solid #ccc;
+  }
+  
+  thead {
+    background-color: #f2f2f2;
+  }
+  
+  th {
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  td input[type="text"] {
+    width: 100%;
+    padding: 0.25rem;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .actions button {
+    margin-right: 0.5rem;
+  }
+  
+  .create-row {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  .create-row h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .create-row label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .create-row input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  
+  .create-row button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+  }
+  
+  .create-row button:hover {
+    background-color: #0069d9;
+  }
+  
+  .create-row button:active {
+    background-color: #005cbf;
+    transform: translateY(1px);
+  }
