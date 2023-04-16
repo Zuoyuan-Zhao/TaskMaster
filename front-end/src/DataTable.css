@@ -85,3 +85,27 @@ table {
     background-color: #005cbf;
     transform: translateY(1px);
   }
+
+  .filter-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .filter-container label {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+  
+  .filter-container input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .matching-cell {
+    background-color: yellow;
+  }

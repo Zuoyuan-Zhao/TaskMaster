@@ -5,6 +5,7 @@ const DataTable = ({ data, setData }) => {
   const [editingRowIndex, setEditingRowIndex] = useState(-1);
   const [editingRow, setEditingRow] = useState({});
   const [newRow, setNewRow] = useState({});
+  const [filterValue, setFilterValue] = useState("");
 
   const handleEdit = (row, rowIndex) => {
     setEditingRowIndex(rowIndex);
@@ -45,8 +46,23 @@ const DataTable = ({ data, setData }) => {
     setNewRow({});
   };
 
+  const filteredData = data.filter((row) => {
+    return Object.values(row).some((value) =>
+      value.toString().toLowerCase().includes(filterValue.toLowerCase())
+    );
+  });
+
   return (
     <div>
+      <div className="filter-container">
+        <label>Type in any keyword you'd like to search:</label>
+        <input
+          type="text"
+          value={filterValue}
+          onChange={(e) => setFilterValue(e.target.value)}
+          className="filter-input"
+        />
+      </div>
       <table>
         <thead>
           <tr>
@@ -57,19 +73,27 @@ const DataTable = ({ data, setData }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((pair, rowIndex) => (
+          {filteredData.map((pair, rowIndex) => (
             <tr key={rowIndex}>
               {Object.keys(pair).map((key) => {
                 const cellValue = pair[key];
                 const isCellEditing = editingRowIndex === rowIndex;
+                const isMatchingFilter = filterValue
+                  ? cellValue.toString().toLowerCase().includes(filterValue.toLowerCase())
+                  : "";
 
                 return (
-                  <td key={key}>
+                  <td
+                    key={key}
+                    className={isMatchingFilter ? "matching-cell" : ""}
+                  >
                     {isCellEditing ? (
                       <input
                         type="text"
                         value={editingRow[key]}
-                        onChange={(e) => handleEditingChange(key, e.target.value)}
+                        onChange={(e) =>
+                          handleEditingChange(key, e.target.value)
+                        }
                       />
                     ) : (
                       cellValue
@@ -80,11 +104,15 @@ const DataTable = ({ data, setData }) => {
               <td>
                 {editingRowIndex === rowIndex ? (
                   <>
-                    <button onClick={() => handleSave(pair, rowIndex)}>Save</button>
+                    <button onClick={() => handleSave(pair, rowIndex)}>
+                      Save
+                    </button>
                     <button onClick={() => handleCancelEdit()}>Cancel</button>
                   </>
                 ) : (
-                  <button onClick={() => handleEdit(pair, rowIndex)}>Edit</button>
+                  <button onClick={() => handleEdit(pair, rowIndex)}>
+                    Edit
+                  </button>
                 )}
                 <button onClick={() => handleDelete(rowIndex)}>Delete</button>
               </td>
